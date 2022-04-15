@@ -1,0 +1,18 @@
+{
+  "name": "playwright-testing",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Tony Woo",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "playwright": "^1.21.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.21.0"
+  }
+}
