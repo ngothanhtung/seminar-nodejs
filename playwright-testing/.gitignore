@@ -104,3 +104,7 @@ dist
 .tern-port
 test-results/
 playwright-report/
+test-results/
+playwright-report/
+test-results/
+playwright-report/
