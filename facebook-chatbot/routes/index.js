@@ -4,7 +4,7 @@ var util = require('util');
 var router = express.Router();
 
 const VALIDATION_TOKEN = 'thanhtungo';
-const PAGE_ACCESS_TOKEN = 'EAAFwWn6bS74BAIHSlVtZANt1vaV5FptqWA1ZCGFoNvtoDmiX2HGs0kHZC9LxdREp8ovsjDydb1LKZBAXPVmHZAmEDOK0qTAnw4TQMZBWqhAgiSNvAstKyFt5GJTOOl3CNtr7AZAXSZA2WgyyIo7dEfEHZAKnjD5ZAFb6YkJnKgZABwiHIjSiHoWUkHl';
+const PAGE_ACCESS_TOKEN = 'EAAFwWn6bS74BAEwxxZAUgoQ2FxLVIQhZBRbSxct7LpQWGZAWpopwIZC78I4HvNA3LhYsZCreFF8ZBIxuD2bZBGFDYRFUh0G1MpoPBxCzsrM6dtaGufSABxFVewlgrrWguYIUaHBUfK9c4CHqmomfAjwmwRp7njqeNesej2jQgX2RLyGSxGI7fIF';
 const SERVER_URL = 'https://chatbot.aptech.io/facebook';
 
 /* GET home page. */
