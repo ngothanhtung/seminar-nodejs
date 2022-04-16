@@ -6,7 +6,7 @@ test.describe('Authentication', () => {
 
     await page.click('text=Đăng nhập');
     await page.fill('input[id="email"]', 'ngothanhtung.it@gmail.com');
-    await page.fill('input[id="password"]', '12345679');
+    await page.fill('input[id="password"]', 'MKkb1980');
     await page.click('button[type="submit"]');
 
     await expect(page).toHaveURL('https://sachso.edu.vn/lms/home');
