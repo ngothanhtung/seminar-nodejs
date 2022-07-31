@@ -1,5 +1,3 @@
-const path = require("path");
-
 module.exports = ({ env }) => ({
   connection: {
     client: "mysql",
@@ -10,7 +8,7 @@ module.exports = ({ env }) => ({
       user: env("DATABASE_USERNAME", "root"),
       password: env("DATABASE_PASSWORD", "HBkb2012"),
       // ssl: {
-      //   rejectUnauthorized: env.bool('DATABASE_SSL_SELF', false), // For self-signed certificates
+      //   rejectUnauthorized: env.bool("DATABASE_SSL_SELF", false), // For self-signed certificates
       // },
     },
     debug: false,
