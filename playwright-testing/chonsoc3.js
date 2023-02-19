@@ -5,7 +5,7 @@ const { forEach } = require('lodash');
 
 const get = async (word) => {
   const browser = await chromium.launch({
-    headless: false,
+    headless: true,
   });
   const context = await browser.newContext();
   const page = await context.newPage();
@@ -17,16 +17,20 @@ const get = async (word) => {
   await page.click('label:has-text("Trả trước")');
   await page.click('#btnSearch');
   await page.waitForSelector('#table-column-toggle');
-  let elementHandle = await page.$('#table-column-toggle');
 
-  let trNodes = await elementHandle.$$eval('tbody > tr', (nodes) => nodes);
+  let trNodes = page.locator('#table-column-toggle tbody > tr');
+  
 
-  forEach(trNodes, async (trNode) => {
-    let tdNodes = await trNode.$$eval('td', (nodes) => nodes);
-    console.log(tdNodes);
-  });
+  // console.log(util.inspect(count, { showHidden: true, depth: null, colors: true }));
 
-  console.log(util.inspect(text, { showHidden: true, depth: null, colors: true }));
+
+
+  //  forEach(trNodes, async (trNode) => {
+    
+  //   console.log(await trNode.textContent());
+  //  });
+
+  // console.log(util.inspect(text, { showHidden: true, depth: null, colors: true }));
   // console.log(text);
   // let text = await elementHandle.$eval('div.w', (node) => node.innerText);
   // let phonetic = await elementHandle.$eval('div.p5l.fl.cB', (node) => node.innerText);
