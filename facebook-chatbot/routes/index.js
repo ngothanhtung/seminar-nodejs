@@ -4,7 +4,7 @@ var util = require('util');
 var router = express.Router();
 
 const VALIDATION_TOKEN = 'thanhtungo';
-const PAGE_ACCESS_TOKEN = 'EAAFwWn6bS74BAFbu93oaLvglIS3fke1TQEbbxUUPakPSUdwFbEJs3j0Ur2pwEwPgZCD2hokOQ13SCvhXGVgVJqzkYKOLMkNfR1oLIUavasJn0G5pDE6awxg5FNWVhPrnWpRxdvHnNscpB8OgtO5LMGJQEqWXtdUragrSRGqxEpWdlrzFZA';
+const PAGE_ACCESS_TOKEN = 'EAAFwWn6bS74BABJfyxiBvjpT2Hwmh4dvQLeBhnWOSpiig3qZBlip66qZAMdC7kz3Ei4JKbfcwnbSPu2pUZBcUJQ7VtqZCZBOFshvwti7RCnoBrr0tZA4D3Wq0oVdRMYVrJyp5vBNuvHPRpxGtIB8jS35jEvYItRtwn2C5ezexHTWdozHmoH9p5';
 const SERVER_URL = 'https://chatbot.aptech.io/facebook';
 
 /* GET home page. */
@@ -47,9 +47,9 @@ router.get('/api/webhook', function (req, res) {
 
 router.post('/api/webhook', function (req, res) {
   var data = req.body;
-  console.log('==================================================================================================================================');
-  console.log(util.inspect(data, { showHidden: true, depth: null }));
-  console.log('==================================================================================================================================');
+  // console.log('==================================================================================================================================');
+  // console.log(util.inspect(data, { showHidden: true, depth: null }));
+  // console.log('==================================================================================================================================');
   if (data.object == 'page') {
     // Iterate over each entry
     // There may be multiple if batched
@@ -176,6 +176,43 @@ function receivedMessage(event) {
         sendAccountLinking(senderID);
         break;
 
+      case 'spkt':
+        sendTextMessage(senderID, 'CHATBOT: Chúc sự kiện thành công tốt đẹp!');
+        break;
+      case 'kqxs':
+        sendTextMessage(
+          senderID,
+          `
+KQXS Miền Trung, Thứ Năm 26/05/2022
+Quảng Bình
+- Giải tám:     61
+- Giải bảy:     815
+- Giải sáu:     3835 - 0096 - 6293
+- Giải năm:     1293
+- Giải tư:
+                81558
+                42416
+                87156
+                37007
+                63099
+                67352
+                55180
+          `,
+        );
+        break;
+      case 'tcdt':
+        sendTextMessage(
+          senderID,
+          `
+KẾT QUẢ TUYỂN SINH 2022
+- Thí sinh: Ngô Thanh Tùng
+- SBD: 01234
+- Ngành: CNTT
+- Điểm: 26,5
+`,
+        );
+        break;
+
       default:
         sendTextMessage(senderID, 'CHATBOT: I have received your message: ' + messageText);
     }
@@ -227,7 +264,45 @@ function receivedPostback(event) {
 
   // When a postback is called, we'll send a message back to the sender to
   // let them know it was successful
-  sendTextMessage(senderID, 'Postback called');
+
+  console.log('PAYLOAD', payload);
+  switch (payload) {
+    case 'KQXS_PAYLOAD':
+      sendTextMessage(
+        senderID,
+        `
+KQXS Miền Trung, Thứ Năm 26/05/2022
+Quảng Bình
+- Giải tám:     61
+- Giải bảy:     815
+- Giải sáu:     3835 - 0096 - 6293
+- Giải năm:     1293
+- Giải tư:
+                81558
+                42416
+                87156
+                37007
+                63099
+                67352
+                55180
+`,
+      );
+      break;
+    case 'TCDT_PAYLOAD':
+      sendTextMessage(
+        senderID,
+        `
+KẾT QUẢ TUYỂN SINH 2022
+- Thí sinh: Ngô Thanh Tùng
+- SBD: 01234
+- Ngành: CNTT
+- Điểm: 26,5
+`,
+      );
+      break;
+    default:
+      sendTextMessage(senderID, 'Postback called');
+  }
 }
 
 /*
@@ -684,23 +759,19 @@ function sendPersistentMenu() {
           composer_input_disabled: false,
           call_to_actions: [
             {
-              title: 'Payay Bill',
+              title: 'Kết quả xổ số',
               type: 'postback',
-              payload: 'PAYBILL_PAYLOAD',
+              payload: 'KQXS_PAYLOAD',
             },
             {
-              title: 'History',
+              title: 'Tra cứu điểm thi',
               type: 'postback',
-              payload: 'HISTORY_PAYLOAD',
+              payload: 'TCDT_PAYLOAD',
             },
-            {
-              title: 'Contact Info',
-              type: 'postback',
-              payload: 'CONTACT_INFO_PAYLOAD',
-            },
+
             {
               type: 'web_url',
-              title: 'Latest News',
+              title: 'Aptech Đà Nẵng',
               url: 'https://aptech-danang.edu.vn',
               webview_height_ratio: 'full',
             },
